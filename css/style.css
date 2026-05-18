@@ -1,6 +1,24 @@
 /* variable declarations */
 :root {
     --myapp-color-background: limegreen;
+    --myapp-header-height: 60px;
+    --myapp-header-background: rgb(60, 60, 60);
+    --myapp-header-fontsize: 22pt;
+    --myapp-header-text-transform: uppercase;
+    --myapp-footer-height: 50px;
+    --myapp-footer-background: rgb(15, 15, 15);
+    --myapp-main-background: rgb(45, 45, 45);
+    --myapp-main-height: calc(100vh - var(--myapp-header-height) - var(--myapp-footer-height));
+    --myapp-default-space: 10px;
+    --myapp-imgbutton-size: 40px;
+    --myapp-imgbutton-imgsize: 25px;
+
+    /* List Variable */
+    --myapp-li-height: 60px;
+    --myapp-li-fontsize: 24pt;
+
+    /* List img */
+    --myapp-li-imgsize: 50px;
 }
 
 html, body {
@@ -24,15 +42,111 @@ html, body {
 
 /*Basic Settings*/
 header{
-    height: 60px;
-    background-color: rgb(60,60,60);
+    height: var(--myapp-header-height);
+    background-color: var(--myapp-header-background);
 }
 footer{
-    height: 50px;
-    background-color: rgb(15,15,15);
+    height: var(--myapp-footer-height);
+    background-color: var(--myapp-footer-background);
 }
 
 main{
-    height: calc(100vh - 100px);
-    background-color: rgb(45,45,45);
+    height: var(--myapp-main-height);
+    background-color: var(--myapp-main-background);
+    overflow-y: auto;
+    padding-left: var(--myapp-default-space);
 }
+
+main p{
+    margin: 0;
+    padding: var(--myapp-default-space);
+}
+
+header h1{
+    margin: 0;
+    font-size: var(--myapp-header-fontsize);
+    font-weight: normal;
+    line-height: var(--myapp-header-height);
+    margin-left: var(--myapp-default-space);
+    text-transform: var(--myapp-header-text-transform);
+    display: inline-block;
+}
+
+.myapp-align-left{
+float: left;
+}
+
+.myapp-align-right{
+    float: right;
+}
+
+.myapp-imgbutton{
+    font-size: 0;
+    background-color: transparent;
+    border: none;
+    height: var(--myapp-imgbutton-size);
+    width: var(--myapp-imgbutton-size);
+    background-repeat: no-repeat;
+    cursor: pointer;
+    vertical-align: middle;
+    filter: invert(90%);
+    background-position: center;
+    background-size: var(--myapp-imgbutton-imgsize) var(--myapp-imgbutton-imgsize);
+}
+
+.myapp-img-menu{
+    background-image: url(../img/menu_FILL0_wght400_GRAD0_opsz24.png);
+}
+
+.myapp-img-edit{
+    background-image: url(../img/edit_FILL0_wght400_GRAD0_opsz24.png);
+}
+
+.myapp-img-add{
+    background-image: url(../img/add_FILL0_wght400_GRAD0_opsz24.png);
+}
+
+.myapp-img-refresh{
+    background-image: url(../img/sync_FILL0_wght400_GRAD0_opsz24.png);
+}
+
+header .myapp-imgbutton{
+    margin-top: calc((var(--myapp-header-height) - var(--myapp-imgbutton-size)) /2);
+}
+
+footer .myapp-imgbutton{
+    margin-top: calc((var(--myapp-footer-height) - var(--myapp-imgbutton-size)) /2);
+}
+
+/* List View */
+
+ul{
+    padding:0;
+    list-style: none;
+}
+li{
+    border-bottom: 1px solid rgb(120, 120, 120);
+    height: var(--myapp-li-height);
+    line-height: var(--myapp-li-height);
+}
+
+h2{
+    margin: 0;
+    margin-left: var(--myapp-default-space);
+    line-height: var(--myapp-li-height);
+    display: inline-block;
+
+}
+
+ul li .myapp-imgbutton{
+    margin-top: calc((var(--myapp-header-height) - var(--myapp-imgbutton-size)) / 2);
+}
+
+ul li img{
+    height: var(--myapp-li-imgsize);
+    width:var(--myapp-li-imgsize);
+    margin-left: var(--myapp-default-space);
+    margin-top: calc((var(--myapp-li-height) - var(--myapp-li-imgsize)) / 2);
+    object-fit: cover;
+}
+
