@@ -1,10 +1,9 @@
 /* variable declarations */
 :root {
-    --myapp-color-background: limegreen;
+    --myapp-color-background: rgb(45, 45, 45);
     --myapp-header-height: 60px;
     --myapp-header-background: rgb(60, 60, 60);
-    --myapp-header-fontsize: 22pt;
-    --myapp-header-text-transform: uppercase;
+    --myapp-header-fontsize: 20pt;
     --myapp-footer-height: 50px;
     --myapp-footer-background: rgb(15, 15, 15);
     --myapp-main-background: rgb(45, 45, 45);
@@ -19,6 +18,9 @@
 
     /* List img */
     --myapp-li-imgsize: 50px;
+
+    /* Tiles per Line*/
+    --myapp-tiles-num-lines-per-line: 5;
 }
 
 html, body {
@@ -44,6 +46,8 @@ html, body {
 header{
     height: var(--myapp-header-height);
     background-color: var(--myapp-header-background);
+    position: relative;
+    z-index: 100;
 }
 footer{
     height: var(--myapp-footer-height);
@@ -54,12 +58,13 @@ main{
     height: var(--myapp-main-height);
     background-color: var(--myapp-main-background);
     overflow-y: auto;
-    padding-left: var(--myapp-default-space);
+    overflow-x: hidden;
+    position: relative;
+    z-index: 1;
 }
 
 main p{
     margin: 0;
-    padding: var(--myapp-default-space);
 }
 
 header h1{
@@ -68,7 +73,7 @@ header h1{
     font-weight: normal;
     line-height: var(--myapp-header-height);
     margin-left: var(--myapp-default-space);
-    text-transform: var(--myapp-header-text-transform);
+    text-transform: uppercase;
     display: inline-block;
 }
 
@@ -109,7 +114,9 @@ float: left;
 .myapp-img-refresh{
     background-image: url(../img/sync_FILL0_wght400_GRAD0_opsz24.png);
 }
-
+.myapp-img-list {
+    background-image: url(../img/list_FILL0_wght400_GRAD0_opsz24.png);
+}
 header .myapp-imgbutton{
     margin-top: calc((var(--myapp-header-height) - var(--myapp-imgbutton-size)) /2);
 }
@@ -122,31 +129,105 @@ footer .myapp-imgbutton{
 
 ul{
     padding:0;
+    margin: 0;
     list-style: none;
 }
 li{
     border-bottom: 1px solid rgb(120, 120, 120);
     height: var(--myapp-li-height);
-    line-height: var(--myapp-li-height);
+    display: flex;
+    align-items: center;
+    overflow: hidden;
 }
 
 h2{
     margin: 0;
-    margin-left: var(--myapp-default-space);
-    line-height: var(--myapp-li-height);
+
     display: inline-block;
 
 }
 
 ul li .myapp-imgbutton{
-    margin-top: calc((var(--myapp-header-height) - var(--myapp-imgbutton-size)) / 2);
+     flex-shrink: 0;
+    float: none;
+    margin-top: 0;
+    margin-left: auto;
+    margin-right: var(--myapp-default-space);
 }
 
 ul li img{
     height: var(--myapp-li-imgsize);
     width:var(--myapp-li-imgsize);
     margin-left: var(--myapp-default-space);
-    margin-top: calc((var(--myapp-li-height) - var(--myapp-li-imgsize)) / 2);
     object-fit: cover;
+    flex-shrink: 0;
+    float: none;
 }
 
+
+.myapp-tiles li *{
+    display: none;
+}
+.myapp-tiles li{
+    padding: 0;
+    margin: 0;
+    margin-left: var(--myapp-default-space);
+    margin-top: var(--myapp-default-space);
+    float: none;
+    display: inline-block;
+    border: none;
+    height: calc((100vw - ((var(--myapp-tiles-num-lines-per-line) + 1) * var(--myapp-default-space))) / var(--myapp-tiles-num-lines-per-line));
+    width: calc((100vw - ((var(--myapp-tiles-num-lines-per-line) + 1) * var(--myapp-default-space))) / var(--myapp-tiles-num-lines-per-line));
+    aspect-ratio: 1;
+}
+
+.myapp-tiles li img{
+    margin: 0;
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+/* Toggle Button Icon - */
+.myapp-img-tiles {
+    background-image: url(../img/grid_view_FILL0_wght400_GRAD0_opsz24.png);
+}
+
+/* Text-Wrapper */
+.myapp-li-text {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-left: 8px;
+    overflow: hidden;
+}
+
+.myapp-li-text h2 {
+    margin: 0;
+    margin-left: 0;
+    display: block;
+    line-height: normal;
+}
+
+.myapp-date {
+    margin: 0;
+    font-size: 12px;
+    color: rgb(160, 160, 160);
+}
+@media (min-width: 400px) {
+    .myapp-tiles li{
+        --myapp-tiles-num-lines-per-line: 4;
+    }
+}
+
+@media (min-width: 500px) {
+    .myapp-tiles li{
+        --myapp-tiles-num-lines-per-line: 5;
+    }
+}
+
+@media (min-width: 600px) {
+    .myapp-tiles li{
+        --myapp-tiles-num-lines-per-line: 6;
+    }
+}
